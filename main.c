@@ -10,9 +10,9 @@
 
 char progFile[BUFF];
 char fileName[BUFF];
-
+char targetFile[BUFF];
 int isfileEmpty(FILE* fp, char* caller);
-
+FILE * ptrFile;
 
 int main(int argc, char** argv)
 {
@@ -21,13 +21,14 @@ int main(int argc, char** argv)
 	if(argc == 2)
 	{
 		strcpy(fileName, argv[1]);
-		strcpy(fileName, argv[1]);
+		strcpy(targetFile, argv[1]);
+		strcat(targetFile,".asm");
 
 	}
 	else if(argc < 2)
 	{
 		strcpy(fileName,"output.log");
-		
+		strcpy(targetFile,"kb.asm");
 		FILE *ptr = fopen(fileName, "w");
 		int input;	
 	
@@ -59,6 +60,8 @@ int main(int argc, char** argv)
 
 	struct node* root = parser(fileName); 
 	struct Stack* stack = createStack(MAXVARS);
+	
+	ptrFile = fopen(targetFile,"w");		
 	preorder(root,stack);	
 
 	printf("Parser successfully\n");	

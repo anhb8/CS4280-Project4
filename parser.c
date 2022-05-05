@@ -112,6 +112,9 @@ void printpError(int errorCode){
 	case 118:
                 printf("Error:The token is not '=',but received %s (Line: %d, Character: %d)\n",tok->tokenIns,tok->line,tok->charN);
                 break;
+	case 120:
+		printf("Error:The token is not conditional operator,but received %s (Line: %d, Character: %d)\n",tok->tokenIns,tok->line,tok->charN);
+                break;	
 	case 121:
                 printf("Error:The token is not 'label',but received %s (Line: %d, Character: %d)\n",tok->tokenIns,tok->line,tok->charN);
                 break;
@@ -346,15 +349,22 @@ struct node * expr() {
 	struct node * temp=createNode("expr");
 	temp->firstN=N();
 	filter();
-	if(strcmp(tok->tokenIns,"-")!=0) {
-                isConsumed=0;
-        }
-	else {
+	temp->secondN=expr1();
+	return temp;
+}
+
+struct node * expr1() {
+	struct node * temp=createNode("expr1");
+	if(strcmp(tok->tokenIns,"-")==0) {
 		attachToken(&temp);
 		filter();
-		temp->secondN=expr();
-		
-	} 
+		temp->firstN=N();
+		filter();
+		temp->secondN=expr1();
+	}
+
+	else 
+		isConsumed=0;
 	return temp;
 }
 struct node * N(){
@@ -369,6 +379,7 @@ struct node * N(){
 struct node * N1() {
 	struct node * temp=createNode("N1");
 	if(strcmp(tok->tokenIns,"/")==0) {
+		attachToken(&temp);
 		filter();
 		temp->firstN=A();
 		filter();

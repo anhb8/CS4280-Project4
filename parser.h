@@ -9,6 +9,7 @@ struct node *  program();
 struct node *  vars();
 struct node * block();
 struct node * expr();
+struct node * expr1();
 struct node * N();
 struct node * N1();
 struct node * A();

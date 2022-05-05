@@ -1,0 +1,17 @@
+Alina Nguyen - Project 4 - CS4280 - Storage = Local
+Language: C
+Purpose: The program is to parse the input, generate a parse tree, perform static semantics, and then generate a target file. 
+-Target file:
+1.kb.asm if keyboard input
+2.file.asm if file was the input. The base name matches that of the input file, that is if input basename is t2 then output should be t2.asm.
+-The parse tree is equivalent to the program in left-to-right traversal (skipping syntactic tokens if not stored in the tree).
+
+To start the program, enter: make 
+Enter any of these following commands: 
+./compfs fileName or ./compfs < fileName or ./compfs
+1. ./compfs fileName : Read from fileName (fileName.asm)
+2. ./compfs < fileName : Read from fileName (kb.asm)
+3. ./compfs : Read from keyboard input (kb.asm)
+(1. Enter the string - 2. Press "Enter" - 3. Press Ctrl+D:Exit the current shell)
+
+Remove all the object files that had been created after running program: Enter: make clean 

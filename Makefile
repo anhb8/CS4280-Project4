@@ -6,7 +6,7 @@ SRC = scanner.h parser.h lex.h token.h tree.h node.h constant.h adapter.h
 OBJ = scanner.o parser.o tree.o adapter.o
 MASTER_OBJ = main.o
 
-MASTER = statSem
+MASTER = compfs
 
 OUTPUT = $(MASTER)
 
@@ -19,4 +19,4 @@ $(MASTER): $(MASTER_OBJ) $(OBJ)
 	$(CC) $(CFLAGS) $(MASTER_OBJ) $(OBJ) -o $(MASTER)
 
 clean: 
-	rm -f $(OUTPUT) *.o output.log a.out
+	rm -f $(OUTPUT) *.o output.log a.out *.asm
